@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+<div id="menu">
+    <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+            <a href="/">Homepage</a>
+            <a href="/about">About Us</a>
+            <a href="/Shoppers/login">Shopper Log In</a>
+            <a href="/Shoppers/create">Create a New Shopper Account</a>
+            <a href="/Shoppers/all">Get All Shoppers</a>
+            <a href="/Companies/login">Company Log In</a>
+            <a href="/Companies/create">Create a New Company Account</a>
+            <a href="/Companies/all">Get All Companies</a>
+        </div>
+    </div>
+</div>
+
+<div id="content2">
+<% if(rs.length > 0) { %>
+<table border="1">
+    <tr><th>Company Name</th><th>Company Email</th></tr>
+    <% for (var i=0; rs.length > i; i++) { %>
+    <tr>
+        <td><a href="/Companies/?CompanyID=<%= rs[i].CompanyID %>"> <%= rs[i].CompanyName %></a></td>
+        <td><a href="/Companies/?CompanyID=<%= rs[i].CompanyID %>"> <%= rs[i].Email %></a></td>
+        <td>
+            <a href="/Shoppers/delete/?ShopperID=<%= rs[i].ShopperID %>&title=<%= rs[i].title %>">Delete</a>
+            <a href="/Shoppers/edit/?ShopperID=<%= rs[i].ShopperID %>">Edit</a>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<% } else { %>
+No shoppers exist.
+<% } %>
+    </div>
+
+
+<% include ../partials/footer %>
